@@ -9,7 +9,7 @@ export default function Main() {
 
   const addList = () => {
     if (!item || !amount) {
-      alert("กรอกให้ครบก่อนจ้าาาาา")
+      alert("กรอกให้ครบก่อนจ้าาา")
       return
     }
 
