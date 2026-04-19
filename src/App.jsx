@@ -1,5 +1,6 @@
 import React from "react"
 import './App.css'
+import Lists from "./components/Lists"
 
 export default function Main() {
 
@@ -13,8 +14,21 @@ export default function Main() {
       return
     }
 
-    const newList = {item, amount}
+    const newList = {item, amount, id:Date.now()}
     setLists([...lists, newList])
+  }
+
+  const deleteItem = (id) => {
+    const newList = lists.filter((inlist) => inlist.id != id)
+    setLists(newList)
+  }
+
+  const totalAmount = () => {
+    let total = 0
+    for(const item of lists) {
+      total = total + item.amount
+    }
+    return total
   }
 
   return (
@@ -38,12 +52,10 @@ export default function Main() {
       </div>
         <div className="section-list">
           {lists.map((inlist, index) => (
-            <div className="item">
-              <div>{inlist.item}</div>
-              <div>{inlist.amount}</div>
-            </div>
+            <Lists key={index} item={inlist.item} amount={inlist.amount} onClick={() => deleteItem(inlist.id)}></Lists>
           ))}
         </div>
+        <div>{totalAmount()}</div>
     </>
   )
 }
